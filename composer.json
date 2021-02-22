@@ -2,7 +2,7 @@
 	"name": "david63/schedulelock",
 	"type": "phpbb-extension",
 	"description": "An extension to schedule the locking of a topic.",
-	"version": "3.3.0-RC1",
+	"version": "3.3.0-RC2",
 	"time": "2021-02-18",
 	"keywords": [
 		"phpbb",
