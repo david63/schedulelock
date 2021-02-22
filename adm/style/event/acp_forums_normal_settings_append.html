@@ -1,0 +1,7 @@
+	<dl>
+		<dt><label for="schedule_topic_lock">{{ lang('SCHEDULE_LOCK') }}{{ lang('COLON') }}</label><br /><span>{{ lang('SCHEDULE_LOCK_EXPLAIN') }}</span></dt>
+		<dd>
+			<label><input type="radio" class="radio" name="schedule_topic_lock" value="1"{% if SCHEDULE_LOCK %} id="schedule_topic_lock" checked="checked"{% endif %} /> {{ lang('YES') }}</label>
+			<label><input type="radio" class="radio" name="schedule_topic_lock" value="0"{% if not SCHEDULE_LOCK %} id="schedule_topic_lock" checked="checked"{% endif %} /> {{ lang('NO') }}</label>
+		</dd>
+	</dl>

@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	{% if PHP_VALID and PHPBB_VALID %}
+		<form id="schedulelock" method="post" action="{{ U_ACTION }}">
+			<fieldset>
+				<legend>{{ lang('SCHEDULE_LOCK_OPTIONS') }}</legend>
+
+				<dl>
+					<dt><label for="schedulelock_all_forums">{{ lang('SCHEDULE_ALL_FORUMS') }}{{ lang('COLON') }}</label><br><span>{{ lang('SCHEDULE_ALL_FORUMS_EXPLAIN') }}</span></dt>
+					<dd>
+						<input type="radio" id="schedulelock_all_forums1" name="schedulelock_all_forums" value="1"{% if SCHEDULE_ALL_FORUMS %} checked="checked"{% endif %} />
+						<label class="set" for="schedulelock_all_forums1">{{ lang('YES') }}</label>
+						<input type="radio" id="schedulelock_all_forums0" name="schedulelock_all_forums" value="0"{% if not SCHEDULE_ALL_FORUMS %} checked="checked"{% endif %} />
+						<label class="unset" for="schedulelock_all_forums0">{{ lang('NO') }}</label>
+					</dd>
+				</dl>
+
+				<dl>
+					<dt><label for="schedulelock_message_top">{{ lang('SHOW_TOP_MESSAGE') }}{{ lang('COLON') }}</label><br><span>{{ lang('SHOW_TOP_MESSAGE_EXPLAIN') }}</span></dt>
+					<dd>
+						<input type="radio" id="schedulelock_message_top1" name="schedulelock_message_top" value="1"{% if SHOW_TOP_MESSAGE %} checked="checked"{% endif %} />
+						<label class="set" for="schedulelock_message_top1">{{ lang('YES') }}</label>
+						<input type="radio" id="announce_global_icon_on_index0" name="schedulelock_message_top" value="0"{% if not SHOW_TOP_MESSAGE %} checked="checked"{% endif %} />
+						<label class="unset" for="schedulelock_message_top0">{{ lang('NO') }}</label>
+					</dd>
+				</dl>
+
+				<dl>
+					<dt><label for="schedulelock_message_bottom">{{ lang('SHOW_BOTTOM_MESSAGE') }}{{ lang('COLON') }}</label><br><span>{{ lang('SHOW_BOTTOM_MESSAGE_EXPLAIN') }}</span></dt>
+					<dd>
+						<input type="radio" id="schedulelock_message_bottom1" name="schedulelock_message_bottom" value="1"{% if SHOW_BOTTOM_MESSAGE %} checked="checked"{% endif %} />
+						<label class="set" for="schedulelock_message_bottom1">{{ lang('YES') }}</label>
+						<input type="radio" id="schedulelock_message_bottom0" name="schedulelock_message_bottom" value="0"{% if not SHOW_BOTTOM_MESSAGE %} checked="checked"{% endif %} />
+						<label class="unset" for="schedulelock_message_bottom0">{{ lang('NO') }}</label>
+					</dd>
+				</dl>
+			</fieldset>
+
+			<fieldset>
+				<legend>{{ lang('SAVE_CHANGES') }}</legend>
+				<p class="submit-buttons">
+					<input class="adm-button" type="submit" id="submit" name="submit" value="{{ lang('SAVE') }}" />&nbsp;
+					<input class="adm-button" type="reset" id="reset" name="reset" value="{{ lang('RESET') }}" />
+				</p>
+				{{ S_FORM_TOKEN }}
+			</fieldset>
+		</form>
+	{% endif %}
+{% endblock %}
