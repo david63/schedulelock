@@ -34,9 +34,9 @@ class version_3_3_0 extends \phpbb\db\migration\migration
 	}
 
 	/**
- 	* @return array Array update data
- 	* @access public
- 	*/
+	 * @return array Array update data
+	 * @access public
+	 */
 	public function update_schema()
 	{
 		// Add new column to topics table
@@ -54,11 +54,11 @@ class version_3_3_0 extends \phpbb\db\migration\migration
 	}
 
 	/**
- 	* Drop the schemas from the database
- 	*
- 	* @return array Array of table schema
- 	* @access public
- 	*/
+	 * Drop the schemas from the database
+	 *
+	 * @return array Array of table schema
+	 * @access public
+	 */
 	public function revert_schema()
 	{
 		return [
