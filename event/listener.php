@@ -118,10 +118,10 @@ class listener implements EventSubscriberInterface
 	{
 		$this->language->add_lang('forum_schedulelock', $this->functions->get_ext_namespace());
 
-		$row 			= $event['row'];
-		$template_data	= $event['template_data'];
+		$row 							= $event['row'];
+		$template_data					= $event['template_data'];
 		$template_data['SCHEDULE_LOCK']	= ($row['schedule_topic_lock']) ? true : false;
-		$event['template_data'] = $template_data;
+		$event['template_data'] 		= $template_data;
 	}
 
 	/**
@@ -162,6 +162,7 @@ class listener implements EventSubscriberInterface
 		$post_data	= $event['post_data'];
 		$mode		= $event['mode'];
 
+		// Do we have the credentials for this forum/topic
 		if (($mode == 'post' || ($mode == 'edit' && $event['post_id'] == $post_data['topic_first_post_id'])) && ($this->config['schedulelock_all_forums'] || $post_data['schedule_topic_lock']) && $this->auth->acl_get('u_schedule_topic_lock'))
 		{
 			$page_data = $event['page_data'];
@@ -199,10 +200,10 @@ class listener implements EventSubscriberInterface
 	 */
 	public function submit_post($event)
 	{
-		$data 		= $event['data'];
-		$post_data	= $event['post_data'];
-		$data['topic_schedule_lock_time'] = $post_data['schedule_lock_time'];
-		$event['data'] = $data;
+		$data 								= $event['data'];
+		$post_data							= $event['post_data'];
+		$data['topic_schedule_lock_time']	= $post_data['schedule_lock_time'];
+		$event['data'] 						= $data;
 	}
 
 	/**
@@ -214,9 +215,9 @@ class listener implements EventSubscriberInterface
 	 */
 	public function modify_post_message($event)
 	{
-		$post_data = $event['post_data'];
-		$post_data['schedule_lock_time'] = (isset($_POST['schedule_lock'])) ? strtotime($this->request->variable('schedule_lock_time', '')) : 0;
-		$event['post_data'] = $post_data;
+		$post_data 							= $event['post_data'];
+		$post_data['schedule_lock_time']	= (isset($_POST['schedule_lock'])) ? strtotime($this->request->variable('schedule_lock_time', '')) : 0;
+		$event['post_data'] 				= $post_data;
 	}
 
 	/**
@@ -228,12 +229,10 @@ class listener implements EventSubscriberInterface
 	 */
 	public function modify_sql_data($event)
 	{
-		$data 		= $event['data'];
-		$sql_data	= $event['sql_data'];
-
-		$sql_data[$this->tables['topics']]['sql']['topic_schedule_lock_time'] = $data['topic_schedule_lock_time'];
-
-		$event['sql_data'] = $sql_data;
+		$data 																	= $event['data'];
+		$sql_data																= $event['sql_data'];
+		$sql_data[$this->tables['topics']]['sql']['topic_schedule_lock_time']	= $data['topic_schedule_lock_time'];
+		$event['sql_data'] 														= $sql_data;
 	}
 
 	/**

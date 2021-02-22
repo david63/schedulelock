@@ -14,9 +14,9 @@ class schedulelock_info
 	public function module()
 	{
 		return [
-			'filename' => '\david63\schedulelock\acp\schedulelock_module',
-			'title' => 'SCHEDULE_TOPIC_LOCK',
-			'modes' => [
+			'filename'	=> '\david63\schedulelock\acp\schedulelock_module',
+			'title'		=> 'SCHEDULE_TOPIC_LOCK',
+			'modes'		=> [
 				'main' => ['title' => 'SCHEDULE_TOPIC_LOCK', 'auth' => 'ext_david63/schedulelock && acl_a_board', 'cat' => ['ACP_CAT_USERS']],
 			],
 		];

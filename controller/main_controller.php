@@ -107,7 +107,6 @@ class main_controller
 				'S_MESSAGE_BOTTOM' 	=> $this->config['schedulelock_message_bottom'],
 				'S_MESSAGE_TOP' 	=> $this->config['schedulelock_message_top'],
 				'S_SCHEDULE_LOCK' 	=> true,
-
 				'SCHEDULE_LOCK'		=> $this->language->lang('SCHEDULE_LOCK', $this->user->format_date($scheduled_time)),
 			]);
 		}

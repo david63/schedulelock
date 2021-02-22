@@ -39,7 +39,7 @@ if (empty($lang) || !is_array($lang))
  */
 
 $lang = array_merge($lang, [
-	'SCHEDULE_TOPIC_LOCK'		=> 'Schedule topic lock',
-
 	'LOG_SCHEDULE_TOPIC_LOCK'	=> '<strong>Updated schedule topic lock options</strong>',
+	
+	'SCHEDULE_TOPIC_LOCK'		=> 'Schedule topic lock',
 ]);

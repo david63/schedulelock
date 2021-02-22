@@ -145,7 +145,7 @@ class admin_controller
 			'SHOW_BOTTOM_MESSAGE'	=> isset($this->config['schedulelock_message_bottom']) ? $this->config['schedulelock_message_bottom'] : '',
 			'SHOW_TOP_MESSAGE' 		=> isset($this->config['schedulelock_message_top']) ? $this->config['schedulelock_message_top'] : '',
 
-			'U_ACTION' => $this->u_action,
+			'U_ACTION' 				=> $this->u_action,
 		]);
 	}
 

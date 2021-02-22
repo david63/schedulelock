@@ -18,7 +18,7 @@ class schedulelock_module
 		global $phpbb_container;
 
 		$this->tpl_name   = 'acp_schedulelock';
-		$this->page_title = $phpbb_container->get('language')->lang('FORUM_SUBSCRIPTIONS');
+		$this->page_title = $phpbb_container->get('language')->lang('SCHEDULE_TOPIC_LOCK');
 
 		// Get an instance of the admin controller
 		$admin_controller = $phpbb_container->get('david63.schedulelock.admin.controller');
