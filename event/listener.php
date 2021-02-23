@@ -118,9 +118,9 @@ class listener implements EventSubscriberInterface
 	{
 		$this->language->add_lang('forum_schedulelock', $this->functions->get_ext_namespace());
 
-		$row 							= $event['row'];
+		$forum_data 					= $event['forum_data'];
 		$template_data					= $event['template_data'];
-		$template_data['SCHEDULE_LOCK']	= ($row['schedule_topic_lock']) ? true : false;
+		$template_data['SCHEDULE_LOCK']	= ($forum_data['schedule_topic_lock']) ? true : false;
 		$event['template_data'] 		= $template_data;
 	}
 
@@ -132,9 +132,12 @@ class listener implements EventSubscriberInterface
 	 */
 	public function initialise_forum_data($event)
 	{
-		$forum_data 						= $event['forum_data'];
-		$forum_data['schedule_topic_lock']	= 0;
-		$event['forum_data'] 				= $forum_data;
+		if ($event['action'] == 'add')
+		{
+			$forum_data 						= $event['forum_data'];
+			$forum_data['schedule_topic_lock']	= 0;
+			$event['forum_data'] 				= $forum_data;
+		}
 	}
 
 	/**
