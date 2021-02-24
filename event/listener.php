@@ -232,10 +232,11 @@ class listener implements EventSubscriberInterface
 	 */
 	public function modify_sql_data($event)
 	{
-		$data 																	= $event['data'];
-		$sql_data																= $event['sql_data'];
-		$sql_data[$this->tables['topics']]['sql']['topic_schedule_lock_time']	= $data['topic_schedule_lock_time'];
-		$event['sql_data'] 														= $sql_data;
+		$data = $event['data'];
+		$data['topic_schedule_lock_time'] = ($data['topic_schedule_lock_time']) ? $data['topic_schedule_lock_time'] : 0;
+		$sql_data = $event['sql_data'];
+		$sql_data[$this->tables['topics']]['sql']['topic_schedule_lock_time'] = $data['topic_schedule_lock_time'];
+		$event['sql_data'] = $sql_data;
 	}
 
 	/**
