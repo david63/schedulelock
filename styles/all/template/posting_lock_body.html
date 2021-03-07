@@ -1,33 +1,35 @@
-{% INCLUDECSS '@' ~ SL_NAMESPACE ~ '/jquery-ui.css' %}
+{% if S_SCHEDULE_LOCK %}
+	{% INCLUDECSS '@' ~ SL_NAMESPACE ~ '/jquery-ui.css' %}
 
-<div class="panel bg3 panel-container" id="lock-panel">
-	<div class="inner">
-		<fieldset class="fields2">
-			<dl>
-				<dt><label for="schedule_lock">{{ lang('SCHEDULE_LOCK') }}{{ lang('COLON') }}</label><br><span>{{ lang('SCHEDULE_LOCK_EXPLAIN') }}</label></span></dt>
-				<dd><input type="checkbox" id="schedule_lock" name="schedule_lock"{{ SCHEDULE_LOCK_CHECKED }} /></dd>
-			</dl>
+	<div class="panel bg3 panel-container" id="lock-panel">
+		<div class="inner">
+			<fieldset class="fields2">
+				<dl>
+					<dt><label for="schedule_lock">{{ lang('SCHEDULE_LOCK') }}{{ lang('COLON') }}</label><br><span>{{ lang('SCHEDULE_LOCK_EXPLAIN') }}</label></span></dt>
+					<dd><input type="checkbox" id="schedule_lock" name="schedule_lock"{{ SCHEDULE_LOCK_CHECKED }} /></dd>
+				</dl>
 
-			<dl>
-				<dt><label for="schedule_lock_time">{{ lang('SCHEDULE_LOCK_TIME') }}{{ lang('COLON') }}</label><br><span>{{ lang('SCHEDULE_LOCK_TIME_EXPLAIN') }}</span></dt>
-				<dd><input type="text" class="textbox" name="schedule_lock_time" id="schedule_lock_time" value="{{ SCHEDULE_LOCK_TIME }}"/><br>{{ lang('CLICK_SELECT') }}</dd>
-			</dl>
-		</fieldset>
+				<dl>
+					<dt><label for="schedule_lock_time">{{ lang('SCHEDULE_LOCK_TIME') }}{{ lang('COLON') }}</label><br><span>{{ lang('SCHEDULE_LOCK_TIME_EXPLAIN') }}</span></dt>
+					<dd><input type="text" class="textbox" name="schedule_lock_time" id="schedule_lock_time" value="{{ SCHEDULE_LOCK_TIME }}"/><br>{{ lang('CLICK_SELECT') }}</dd>
+				</dl>
+			</fieldset>
+		</div>
 	</div>
-</div>
 
-<script>
-	var currentTextDate = '{{ lang('CURRENT_TEXT_DATE') | escape('js') }}';
-	var dayNamesMin 	= '{{ lang('DAY_NAMES_MIN') | escape('js') }}';
-	var hourText 		= '{{ lang('HOUR_TEXT') | escape('js') }}';
-	var isRTL 			= '{{ RTL_LANGUAGE | escape('js') }}';
-	var minuteText 		= '{{ lang('MINUTE_TEXT') | escape('js') }}';
-	var monthNames 		= '{{ lang('MONTH_NAMES') | escape('js') }}';
-	var nextTxt 		= '{{ lang('NEXT_TEXT') | escape('js') }}';
-	var prevText 		= '{{ lang('PREV_TEXT') | escape('js') }}';
-	var timeText 		= '{{ lang('TIME_TEXT') | escape('js') }}';
-</script>
+	<script>
+		var currentTextDate = '{{ lang('CURRENT_TEXT_DATE') | escape('js') }}';
+		var dayNamesMin 	= '{{ lang('DAY_NAMES_MIN') | escape('js') }}';
+		var hourText 		= '{{ lang('HOUR_TEXT') | escape('js') }}';
+		var isRTL 			= '{{ RTL_LANGUAGE | escape('js') }}';
+		var minuteText 		= '{{ lang('MINUTE_TEXT') | escape('js') }}';
+		var monthNames 		= '{{ lang('MONTH_NAMES') | escape('js') }}';
+		var nextTxt 		= '{{ lang('NEXT_TEXT') | escape('js') }}';
+		var prevText 		= '{{ lang('PREV_TEXT') | escape('js') }}';
+		var timeText 		= '{{ lang('TIME_TEXT') | escape('js') }}';
+	</script>
 
-{% INCLUDEJS '@' ~ SL_NAMESPACE ~ '/config.js' %}
-{% INCLUDEJS '@' ~ SL_NAMESPACE ~ '/jquery-ui.js' %}
-{% INCLUDEJS '@' ~ SL_NAMESPACE ~ '/jquery-timepicker.js' %}
+	{% INCLUDEJS '@' ~ SL_NAMESPACE ~ '/config.js' %}
+	{% INCLUDEJS '@' ~ SL_NAMESPACE ~ '/jquery-ui.js' %}
+	{% INCLUDEJS '@' ~ SL_NAMESPACE ~ '/jquery-timepicker.js' %}
+{% endif %}

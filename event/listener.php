@@ -90,6 +90,7 @@ class listener implements EventSubscriberInterface
 			'core.posting_modify_message_text'			=> 'modify_post_message',
 			'core.submit_post_modify_sql_data'			=> 'modify_sql_data',
 			'core.viewtopic_modify_page_title'			=> 'scheduled_lock',
+			'core.modify_posting_parameters'			=> 'posting_parameters',
 		];
 	}
 
@@ -248,5 +249,20 @@ class listener implements EventSubscriberInterface
 	public function scheduled_lock($event)
 	{
 		$this->main_controller->scheduled_lock($event);
+	}
+
+	/**
+	 * Process the Schedule Lock Message if the topic is open
+	 *
+	 * @param object $event The event object
+	 * @return null
+	 * @access public
+	 */
+	public function posting_parameters($event)
+	{
+		if ($event['mode'] != 'reply')
+		{
+			$this->main_controller->scheduled_lock($event);
+		}
 	}
 }

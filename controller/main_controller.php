@@ -87,7 +87,8 @@ class main_controller
 	public function scheduled_lock($event)
 	{
 		$topic_data 	= $event['topic_data'];
-		$scheduled_time	= $topic_data['topic_schedule_lock_time'];
+		$topic_id		= ($event['post_id']) ? $this->get_topic_from_post($event['post_id']) : $topic_data['topic_id'];
+		$scheduled_time	= $this->get_lock_time($topic_id);
 
 		// Do we need to lock this topic?
 		if ($scheduled_time > 0 && time() > $scheduled_time)
@@ -97,7 +98,7 @@ class main_controller
 
 			$sql = 'UPDATE ' . $this->tables['topics'] . '
 				SET topic_status = ' . ITEM_LOCKED . '
-                WHERE topic_id = ' . (int) $topic_data['topic_id'] . '
+                WHERE topic_id = ' . (int) $topic_id . '
                 AND topic_moved_id = 0';
 
 			$this->db->sql_query($sql);
@@ -110,5 +111,49 @@ class main_controller
 				'SCHEDULE_LOCK'		=> $this->language->lang('SCHEDULE_LOCK', $this->user->format_date($scheduled_time)),
 			]);
 		}
+	}
+
+	/**
+	 * Get the topic ID from the post ID
+	 *
+	 * @param	int			$post_id
+	 *
+	 * @return	$topic_id
+	 * @access	public
+	 */
+	public function get_topic_from_post($post_id)
+	{
+		$sql = 'SELECT topic_id
+			FROM ' . $this->tables['posts'] . '
+			WHERE post_id = ' . (int) $post_id;
+
+		$result		= $this->db->sql_query($sql);
+		$topic_id	= $this->db->sql_fetchfield('topic_id');
+
+		$this->db->sql_freeresult($result);
+
+		return $topic_id;
+	}
+
+	/**
+	 * Get the lock time from the topic ID
+	 *
+	 * @param	int			$topic_id
+	 *
+	 * @return	$scheduled_time
+	 * @access	public
+	 */
+	public function get_lock_time($topic_id)
+	{
+		$sql = 'SELECT topic_schedule_lock_time
+			FROM ' . $this->tables['topics'] . '
+			WHERE topic_id = ' . (int) $topic_id;
+
+		$result			= $this->db->sql_query($sql);
+		$scheduled_time	= $this->db->sql_fetchfield('topic_schedule_lock_time');
+
+		$this->db->sql_freeresult($result);
+
+		return $scheduled_time;
 	}
 }
